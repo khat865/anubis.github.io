@@ -3,382 +3,273 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ANUBIS — A Representation-Centric Benchmark</title>
-  <meta name="description" content="ANUBIS — a representation-centric multi-view skeleton-action benchmark. Click to open the full resources on Notion." />
-  <!-- Open Graph (replace og:image with a real URL for social shares) -->
-  <meta property="og:title" content="ANUBIS — A Representation-Centric Benchmark" />
-  <meta property="og:description" content="102 classes · multi-view · privacy-friendly dataset. Open the Notion page for details." />
-  <meta property="og:image" content="https://your-site.com/og-image.png" />
+  <title>Representation-Centric Survey of Skeletal Action Recognition and the ANUBIS Benchmark</title>
+  <meta name="description" content="ANUBIS — a representation-centric multi-view skeleton-action benchmark. Download & More Information on the Notion page." />
+  <meta property="og:title" content="Representation-Centric Survey of Skeletal Action Recognition and the ANUBIS Benchmark" />
+  <meta property="og:description" content="102 classes · multi-view · privacy-friendly dataset. Download & More Information on Notion." />
   <meta property="og:type" content="website" />
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg-gradient: radial-gradient(1200px 800px at 20% -10%, rgba(61,156,255,.35), transparent 55%),
-                   radial-gradient(1000px 600px at 120% 20%, rgba(255,61,182,.25), transparent 55%),
-                   linear-gradient(180deg, #0B1020 0%, #080B16 100%);
-      --accent-from: #6EE7F9;
-      --accent-to: #C084FC;
-      --text-main: #E5F0FF;
-      --text-dim: #A9B6D3;
-      --button-bg: rgba(255,255,255,0.92);
+      --bg-gradient: radial-gradient(circle at 30% 20%, rgba(245,237,222,.35), transparent 70%),
+                   radial-gradient(circle at 70% 40%, rgba(190,131,14,.25), transparent 70%),
+                   linear-gradient(180deg, #202020 0%, #141414 100%);
+      --accent-from: #F5EDDE; /* ANU Gold tint */
+      --accent-to: #BE830E;   /* ANU Gold */
+      --text-main: #ffffff;
+      --text-dim: rgba(245,237,222,0.92);
       --max-width: 1100px;
     }
-
-    html,body{
-      height:100%;
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: var(--bg-gradient);
-      color: var(--text-main);
+    html,body{height:100%;margin:0;padding:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;}
+    body{background:var(--bg-gradient);color:var(--text-main);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+    .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:48px 20px;}
+    canvas#bg{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;}
+    .content{position:relative;z-index:3;text-align:center;max-width:var(--max-width);width:100%;margin:0 auto;padding:20px;}
+    h1{margin:0;font-weight:800;letter-spacing:-0.01em;font-size:36px;line-height:1.03;color:var(--text-main);text-shadow:0 10px 30px rgba(0,0,0,0.6);}
+    @media(min-width:900px){ h1{font-size:56px;} }
+    .title-gradient{display:block;background:linear-gradient(90deg,var(--accent-from),var(--accent-to));-webkit-background-clip:text;background-clip:text;color:transparent;margin-top:10px;font-size:0.7em;}
+    p.lead{margin:18px auto 0;color:var(--text-dim);max-width:820px;font-size:16px;line-height:1.6;}
+    @media(min-width:900px){ p.lead{font-size:18px;} }
+    .badges{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.06);backdrop-filter:blur(6px);font-size:14px;color:var(--text-main);}
+    .cta{margin-top:26px;display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding:14px 26px;border-radius:14px;background:linear-gradient(90deg,var(--accent-from),var(--accent-to));color:#0f1724;font-weight:700;font-size:16px;box-shadow:0 18px 50px rgba(190,131,14,0.14);transition:transform .16s ease,opacity .16s ease;}
+    .cta:focus{outline:3px solid rgba(245,237,222,0.14);outline-offset:4px;}
+    .cta:hover{transform:translateY(-6px);}
+    /* subtle decorative frame */
+    .frame { position:absolute; inset:8% 6%; border-radius:24px; box-shadow: 0 40px 120px rgba(0,0,0,0.5) inset; pointer-events:none; z-index:1; }
+    /* reduced motion: stop heavy animations */
+    @media (prefers-reduced-motion: reduce) {
+      .cta{transition:none;}
     }
-
-    /* Layout */
-    .hero{
-      min-height:92vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
-      overflow:hidden;
-      padding:48px 20px;
-    }
-    /* Canvas fills hero */
-    canvas#flowCanvas{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      display:block;
-      z-index:0;
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      text-align:center;
-      max-width:var(--max-width);
-      width:100%;
-      margin:0 auto;
-      padding: 20px;
-    }
-
-    h1{
-      margin:0;
-      font-weight:800;
-      letter-spacing:-0.02em;
-      font-size:48px;
-      line-height:1.02;
-      color:var(--text-main);
-    }
-
-    @media (min-width:900px){
-      h1{ font-size:72px; }
-    }
-
-    .title-gradient{
-      display:block;
-      background-image: linear-gradient(90deg,var(--accent-from), var(--accent-to));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      -webkit-text-fill-color:transparent;
-      margin-top:6px;
-    }
-
-    p.lead{
-      margin:18px auto 0;
-      color:var(--text-dim);
-      max-width:820px;
-      font-size:18px;
-      line-height:1.6;
-    }
-
-    .cta{
-      margin-top:28px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      padding:12px 22px;
-      border-radius:999px;
-      background:var(--button-bg);
-      color:#0f1724;
-      font-weight:600;
-      box-shadow:0 10px 30px rgba(50,200,255,0.06), 0 4px 10px rgba(0,0,0,0.35);
-      transition:transform .16s ease, box-shadow .16s ease, opacity .16s ease;
-    }
-    .cta:focus{ outline:3px solid rgba(110,231,249,0.22); outline-offset:3px; }
-    .cta:hover{ transform:translateY(-4px); box-shadow:0 18px 38px rgba(50,200,255,0.09); }
-
-    /* small accessibility note (visually subtle) */
-    .note{
-      margin-top:12px;
-      color:rgba(255,255,255,0.45);
-      font-size:12px;
-    }
-
-    /* reduced motion: minimize animations */
-    @media (prefers-reduced-motion: reduce){
-      .cta{ transition:none; }
-    }
-
-    /* small responsive tweak */
-    @media (max-width:520px){
-      h1{ font-size:34px; }
-      .title-gradient{ font-size:28px; }
-      p.lead{ font-size:15px; }
-    }
-
   </style>
 </head>
 <body>
   <main class="hero" role="main" aria-label="ANUBIS landing">
-    <!-- Canvas animation background -->
-    <canvas id="flowCanvas" role="img" aria-label="Abstract multi-view motion visualization"></canvas>
+    <canvas id="bg" role="img" aria-label="Abstract animated background"></canvas>
 
-    <!-- Minimal content -->
+    <div class="frame" aria-hidden="true"></div>
+
     <div class="content">
       <h1>
-        ANUBIS
-        <span class="title-gradient">A Representation-Centric Benchmark</span>
+        Representation-Centric Survey of Skeletal Action Recognition
+        <span class="title-gradient">and the ANUBIS Benchmark</span>
       </h1>
 
-      <p class="lead">Discover a privacy-friendly, multi-view benchmark for skeleton-based action recognition. Open the Notion page for dataset details, benchmarks, and resources.</p>
+      <p class="lead">A privacy-friendly, multi-view benchmark. Click below to download the paper and access full resources on Notion.</p>
 
-      <div>
-        <a id="notionBtn" class="cta" href="https://www.notion.so/Representation-Centric-Survey-of-Skeletal-Action-Recognition-and-the-ANUBIS-Benchmark-254d4753d3208013ab87ca8f4ad706e9?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Open Notion page with ANUBIS dataset and benchmarks">
-          Open Notion Page
-        </a>
+      <div class="badges" aria-hidden="true">
+        <div class="badge">★ 102 Actions</div>
+        <div class="badge">👥 80 Views</div>
+        <div class="badge">👁 Front & Rear</div>
       </div>
 
+      <div>
+        <a class="cta" id="notionLink" href="https://www.notion.so/Representation-Centric-Survey-of-Skeletal-Action-Recognition-and-the-ANUBIS-Benchmark-254d4753d3208013ab87ca8f4ad706e9?source=copy_link" target="_blank" rel="noopener noreferrer" aria-label="Download and view more information">
+          <!-- simple SVG icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+            <path d="M12 3v12" stroke="#0f1724" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 7l4-4 4 4" stroke="#0f1724" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 21h14" stroke="#0f1724" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Download & More Information
+        </a>
+      </div>
     </div>
   </main>
 
   <script>
-    /*
-      Flow field particle background
-      - Adapted for vanilla JS from earlier prototype
-      - Replace YOUR_NOTION_LINK_HERE in the DOM if needed
-      - Customization points documented below
-    */
+  (function(){
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d', { alpha: true });
+    let DPR = Math.max(1, window.devicePixelRatio || 1);
+    let W = 0, H = 0;
+    let particles = [];
+    let shapes = [];
+    let auroraBands = [];
+    let raf = null;
+    let t = 0;
+    const REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    (function(){
-      const canvas = document.getElementById('flowCanvas');
-      const ctx = canvas.getContext('2d', { alpha: true });
-      let DPR = Math.max(1, window.devicePixelRatio || 1);
-      let W = 0, H = 0;
-      let particles = [];
-      let rafId = null;
-      let t = 0;
-      const MAX_PARTICLES = 220; // hard cap for desktop; reduce if performance issues
-      const AREA_PER_PARTICLE = 50000; // larger => fewer particles (pixel^2 per particle)
+    function resize(){
+      DPR = Math.max(1, window.devicePixelRatio || 1);
+      W = Math.max(360, Math.floor(canvas.clientWidth * DPR));
+      H = Math.max(360, Math.floor(canvas.clientHeight * DPR));
+      canvas.width = W;
+      canvas.height = H;
+      initScene();
+      drawStaticBackground();
+    }
 
-      // reduced motion
-      const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function drawStaticBackground(){
+      // base dark fill
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(20,20,20,1)';
+      ctx.fillRect(0,0,W,H);
+      // soft radial glows to warm the scene
+      const g1 = ctx.createRadialGradient(W*0.18, H*0.12, 0, W*0.18, H*0.12, Math.max(W,H)*0.9);
+      g1.addColorStop(0, 'rgba(245,237,222,0.12)');
+      g1.addColorStop(1, 'rgba(245,237,222,0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0,0,W,H);
 
-      // pointer state
-      const pointer = { x: 0, y: 0, active: false };
+      const g2 = ctx.createRadialGradient(W*0.82, H*0.4, 0, W*0.82, H*0.4, Math.max(W,H)*0.9);
+      g2.addColorStop(0, 'rgba(190,131,14,0.10)');
+      g2.addColorStop(1, 'rgba(190,131,14,0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(0,0,W,H);
+    }
 
-      function resize(){
-        DPR = Math.max(1, window.devicePixelRatio || 1);
-        W = Math.max(300, Math.floor(canvas.clientWidth * DPR));
-        H = Math.max(200, Math.floor(canvas.clientHeight * DPR));
-        canvas.width = W;
-        canvas.height = H;
-        ctx.setTransform(1,0,0,1,0,0); // reset transform
-        // recompute particle count
-        const area = (canvas.clientWidth * canvas.clientHeight);
-        const desired = Math.max(24, Math.floor(area / AREA_PER_PARTICLE));
-        const count = Math.min(MAX_PARTICLES, Math.max(24, desired));
-        // rebuild particles preserving some attributes
-        const old = particles;
-        particles = new Array(count).fill(0).map((_,i)=>{
-          const carry = old[i];
-          if (carry) {
-            return {
-              x: carry.x,
-              y: carry.y,
-              vx: carry.vx,
-              vy: carry.vy,
-              life: carry.life,
-              age: carry.age,
-              hue: carry.hue
-            };
-          }
-          return {
-            x: Math.random() * W,
-            y: Math.random() * H,
-            vx: (Math.random() - 0.5) * 0.6,
-            vy: (Math.random() - 0.5) * 0.6,
-            life: Math.random() * 200 + 100,
-            age: 0,
-            hue: Math.random() * 60 + 190
-          };
-        });
-        // draw initial static background
-        drawStaticBackground();
-      }
+    function initScene(){
+      // particles
+      const area = (canvas.clientWidth * canvas.clientHeight);
+      const desired = Math.max(48, Math.floor(area / 35000));
+      const count = Math.min(420, desired);
+      particles = new Array(count).fill(0).map(()=>({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        vx: (Math.random()-0.5)*1.4,
+        vy: (Math.random()-0.5)*1.4,
+        life: Math.random()*300+120,
+        age: Math.random()*100,
+        hue: 40 + Math.random()*60
+      }));
 
-      function drawStaticBackground(){
-        // static dark base — used on resize and reduced-motion fallback
-        ctx.save();
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(9,12,24,1)';
-        ctx.fillRect(0,0,W,H);
-        // add subtle radial halos
-        const g1 = ctx.createRadialGradient(W*0.2, H*0.05, 0, W*0.2, H*0.05, Math.max(W,H)*0.9);
-        g1.addColorStop(0, 'rgba(61,156,255,0.12)');
-        g1.addColorStop(1, 'rgba(61,156,255,0)');
-        ctx.fillStyle = g1;
-        ctx.fillRect(0,0,W,H);
+      // hex shapes
+      shapes = new Array(26).fill(0).map(()=>({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        size: (Math.random()*36 + 12) * DPR,
+        angle: Math.random()*Math.PI*2,
+        rot: (Math.random()-0.5)*0.004,
+        alpha: 0.06 + Math.random()*0.12
+      }));
 
-        const g2 = ctx.createRadialGradient(W*1.2, H*0.18, 0, W*1.2, H*0.18, Math.max(W,H)*1.1);
-        g2.addColorStop(0, 'rgba(255,61,182,0.08)');
-        g2.addColorStop(1, 'rgba(255,61,182,0)');
-        ctx.fillStyle = g2;
-        ctx.fillRect(0,0,W,H);
-        ctx.restore();
-      }
+      // aurora bands (soft moving bezier-ish)
+      auroraBands = [
+        {offset:0.18, speed: 0.0008, amp: Math.max(40, H*0.14), hue: 40, alpha:0.08},
+        {offset:0.55, speed: 0.0006, amp: Math.max(60, H*0.20), hue: 30, alpha:0.06}
+      ];
+    }
 
-      function onPointerMove(e){
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        pointer.x = (clientX - rect.left) * DPR;
-        pointer.y = (clientY - rect.top) * DPR;
-        pointer.active = true;
-      }
-      function onPointerLeave(){ pointer.active = false; }
+    function drawAurora(){
+      auroraBands.forEach((b, idx)=>{
+        const yBase = Math.sin((t*b.speed)+idx)*b.amp + H*b.offset;
+        const grd = ctx.createLinearGradient(0,yBase-b.amp,0,yBase+b.amp);
+        grd.addColorStop(0, 'rgba(245,237,222,0)');
+        grd.addColorStop(0.3, `hsla(${b.hue}, 80%, 65%, ${b.alpha*0.6})`);
+        grd.addColorStop(0.7, `hsla(${b.hue+20}, 75%, 55%, ${b.alpha*0.9})`);
+        grd.addColorStop(1, 'rgba(190,131,14,0)');
+        ctx.fillStyle = grd;
+        // soft wide band
+        ctx.beginPath();
+        ctx.moveTo(0, yBase - b.amp);
+        ctx.bezierCurveTo(W*0.25, yBase - b.amp*0.6 + Math.sin(t*0.002+idx)*20, W*0.75, yBase + b.amp*0.6 + Math.cos(t*0.001+idx)*20, W, yBase - b.amp);
+        ctx.lineTo(W, yBase + b.amp);
+        ctx.bezierCurveTo(W*0.75, yBase + b.amp*0.6 + Math.sin(t*0.001+idx)*20, W*0.25, yBase - b.amp*0.6 + Math.cos(t*0.002+idx)*20, 0, yBase + b.amp);
+        ctx.closePath();
+        ctx.fill();
+      });
+    }
 
-      // pause when page hidden
-      function onVisibilityChange(){ 
-        if (document.hidden) cancelAnimationFrame(rafId);
-        else rafId = requestAnimationFrame(loop);
-      }
+    function loop(){
+      if (REDUCED) return; // reduced-motion users see static background
+      // translucent overlay for trails
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(18,18,18,0.14)';
+      ctx.fillRect(0,0,W,H);
 
-      function loop(){
-        if (reducedMotion) return; // do not run loop when user requests reduced motion
-        // trail / fade
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(9,12,24,0.08)';
-        ctx.fillRect(0,0,W,H);
+      // aurora bands
+      ctx.globalCompositeOperation = 'lighter';
+      drawAurora();
 
-        ctx.globalCompositeOperation = 'lighter';
-        // update particles
-        particles.forEach((p,i)=>{
-          const angle = Math.sin((p.x + t * 0.6) * 0.002) + Math.cos((p.y - t * 0.4) * 0.002);
-          p.vx += Math.cos(angle) * 0.04;
-          p.vy += Math.sin(angle) * 0.04;
+      // particles
+      particles.forEach((p,i)=>{
+        const angle = Math.sin((p.x + t*0.9)*0.0016) + Math.cos((p.y - t*0.5)*0.0012);
+        p.vx += Math.cos(angle)*0.06;
+        p.vy += Math.sin(angle)*0.06;
+        const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy) + 1e-6;
+        const max = 3.2;
+        if (spd > max){ p.vx = (p.vx/spd)*max; p.vy = (p.vy/spd)*max; }
+        p.vx *= 0.995; p.vy *= 0.995;
+        const ox = p.x, oy = p.y;
+        p.x += p.vx; p.y += p.vy;
+        // wrap edges
+        if (p.x < -10) p.x = W+10;
+        if (p.x > W+10) p.x = -10;
+        if (p.y < -10) p.y = H+10;
+        if (p.y > H+10) p.y = -10;
 
-          if (pointer.active) {
-            const dx = (pointer.x - p.x);
-            const dy = (pointer.y - p.y);
-            const dist2 = dx*dx + dy*dy + 1e-3;
-            const force = Math.min(1.2, 20000 / dist2);
-            p.vx += (dx/Math.sqrt(dist2)) * force * 0.08;
-            p.vy += (dy/Math.sqrt(dist2)) * force * 0.08;
-          }
+        const alpha = 0.25 + 0.45*Math.sin((t+i)*0.015);
+        const hue = (p.hue + (t*0.02))%360;
+        ctx.strokeStyle = `hsla(${hue},88%,60%,${alpha})`;
+        ctx.lineWidth = 1.2*DPR;
+        ctx.beginPath();
+        ctx.moveTo(ox,oy);
+        ctx.lineTo(p.x,p.y);
+        ctx.stroke();
 
-          // friction & speed cap
-          const spd = Math.sqrt(p.vx*p.vx + p.vy*p.vy) + 1e-6;
-          const max = 2.2;
-          if (spd > max) {
-            p.vx = (p.vx / spd) * max;
-            p.vy = (p.vy / spd) * max;
-          }
-          p.vx *= 0.985;
-          p.vy *= 0.985;
-
-          const oldx = p.x, oldy = p.y;
-          p.x += p.vx;
-          p.y += p.vy;
-
-          // bounds
-          if (p.x < 0 || p.x > W) { p.vx *= -1; p.x = Math.max(0, Math.min(W, p.x)); }
-          if (p.y < 0 || p.y > H) { p.vy *= -1; p.y = Math.max(0, Math.min(H, p.y)); }
-
-          // draw
-          const alpha = 0.35 + 0.35 * Math.sin((t + i) * 0.01);
-          // hue cycles slowly
-          const hue = (p.hue + (t * 0.05)) % 360;
-          ctx.strokeStyle = `hsla(${hue}, 90%, 65%, ${alpha})`;
-          ctx.lineWidth = 1.0 * DPR;
-          ctx.beginPath();
-          ctx.moveTo(oldx, oldy);
-          ctx.lineTo(p.x, p.y);
-          ctx.stroke();
-
-          // life
-          p.age++;
-          if (p.age > p.life) {
-            p.x = Math.random() * W;
-            p.y = Math.random() * H;
-            p.vx = (Math.random() - 0.5) * 0.6;
-            p.vy = (Math.random() - 0.5) * 0.6;
-            p.age = 0;
-            p.life = Math.random() * 200 + 100;
-          }
-        });
-
-        t += 1;
-        rafId = requestAnimationFrame(loop);
-      }
-
-      // init / attach events
-      function init(){
-        // size first
-        resize();
-        // pointer
-        window.addEventListener('mousemove', onPointerMove, { passive:true });
-        window.addEventListener('touchstart', onPointerMove, { passive:true });
-        window.addEventListener('touchmove', onPointerMove, { passive:true });
-        window.addEventListener('mouseleave', onPointerLeave, { passive:true });
-        window.addEventListener('touchend', onPointerLeave, { passive:true });
-        // resize
-        window.addEventListener('resize', () => {
-          // debounce small resize bursts
-          clearTimeout(window._flow_resize_timer);
-          window._flow_resize_timer = setTimeout(resize, 120);
-        }, { passive:true });
-
-        // visibility change pause/resume
-        document.addEventListener('visibilitychange', onVisibilityChange, false);
-
-        // initial draw
-        drawStaticBackground();
-
-        // start animation if allowed
-        if (!reducedMotion) rafId = requestAnimationFrame(loop);
-      }
-
-      // start
-      init();
-
-      // cleanup on unload (best-effort)
-      window.addEventListener('pagehide', () => {
-        cancelAnimationFrame(rafId);
+        p.age++;
+        if (p.age > p.life){ p.x = Math.random()*W; p.y = Math.random()*H; p.vx=(Math.random()-0.5)*1.4; p.vy=(Math.random()-0.5)*1.4; p.age=0; p.life=Math.random()*300+120; }
       });
 
-      // expose a small API for runtime tweaks (optional)
-      window.ANUBIS_FLOW = {
-        setMaxParticles(n){
-          // only accept integer
-          const v = Math.max(12, Math.min(1000, Math.floor(n)));
-          // note: MAX_PARTICLES is constant above; to change runtime you can alter AREA_PER_PARTICLE externally
-          console.warn('To change particle behavior, edit AREA_PER_PARTICLE or MAX_PARTICLES in source code.');
-        },
-        pause(){
-          cancelAnimationFrame(rafId);
-        },
-        resume(){
-          if (!reducedMotion) rafId = requestAnimationFrame(loop);
+      // hex shapes (subtle rotating outlines)
+      ctx.globalCompositeOperation = 'source-over';
+      shapes.forEach(s=>{
+        s.angle += s.rot;
+        // slight vertical drift
+        s.y += Math.sin(t*0.0009 + s.size)*0.08;
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.angle);
+        ctx.strokeStyle = `rgba(245,237,222,${s.alpha})`;
+        ctx.lineWidth = Math.max(0.8, 1*DPR);
+        ctx.beginPath();
+        const r = s.size;
+        for(let i=0;i<6;i++){
+          const theta = (i/6)*Math.PI*2;
+          const x = Math.cos(theta)*r;
+          const y = Math.sin(theta)*r;
+          if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
         }
-      };
+        ctx.closePath();
+        ctx.stroke();
+        ctx.restore();
+      });
 
-    })();
+      t += 1;
+      raf = requestAnimationFrame(loop);
+    }
+
+    function start(){
+      if (!REDUCED) {
+        if (!raf) raf = requestAnimationFrame(loop);
+      }
+    }
+    function stop(){
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+    }
+
+    // initialize
+    resize();
+    window.addEventListener('resize', ()=>{ clearTimeout(window._resizeTimer); window._resizeTimer = setTimeout(resize, 120); }, {passive:true});
+    if (!REDUCED) start();
+
+    // pause when hidden
+    document.addEventListener('visibilitychange', ()=>{ if (document.hidden) stop(); else start(); });
+
+    // clean up on unload
+    window.addEventListener('pagehide', ()=>{ stop(); });
+
+    // if reduced motion, draw static scene once
+    if (REDUCED) {
+      drawStaticBackground();
+      // slight overlay of aurora (static)
+      ctx.globalCompositeOperation = 'lighter';
+      auroraBands && drawAurora && drawAurora();
+    }
+  })();
   </script>
 </body>
 </html>
