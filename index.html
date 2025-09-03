@@ -73,9 +73,52 @@
             color: #d4a574;
         }
 
+        /* 抬头区域 */
+        .header-banner {
+            width: 100%;
+            height: 400px;
+            background-image: url('images/header-background.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+
+        .header-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .header-logo {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        .header-logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
         /* 主要内容 */
         main {
-            margin-top: 80px;
+            margin-top: 0;
         }
 
         /* 英雄区域 */
@@ -382,6 +425,20 @@
             .contributions {
                 grid-template-columns: 1fr;
             }
+            
+            .header-banner {
+                height: 300px;
+            }
+            
+            .header-logo {
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .header-logo img {
+                width: 60px;
+                height: 60px;
+            }
         }
     </style>
 </head>
@@ -399,6 +456,13 @@
     </nav>
 
     <main>
+        <!-- 抬头区域 -->
+        <div class="header-banner">
+            <div class="header-logo">
+                <img src="images/anubis.png" alt="ANUBIS Logo">
+            </div>
+        </div>
+
         <section class="hero">
             <div class="hero-content">
                 <h1>Representation-Centric Survey of Skeletal Action Recognition and the ANUBIS Benchmark</h1>
