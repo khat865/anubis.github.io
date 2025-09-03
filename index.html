@@ -1,11 +1,4 @@
-.example-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .video-container video, .skeleton-container video {
-                height: 180px;
-            }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -265,6 +258,150 @@
             line-height: 1.6;
         }
 
+        /* 数据集示例区域 - 简化版本 */
+        .section-intro {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .examples-container {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .example-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .example-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .example-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f8f9fa;
+        }
+
+        .action-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-meta {
+            margin-top: 0.5rem;
+        }
+
+        .viewpoint-info {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .video-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .video-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #f8f9fa;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .video-wrapper:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 数据集特性部分 */
+        .dataset-features {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 4rem;
+        }
+
+        .dataset-features h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* 作者区域 */
         .authors {
             background: #f8f9fa;
@@ -300,53 +437,6 @@
         .author-info p {
             color: #7f8c8d;
             font-size: 0.9rem;
-        }
-
-        /* 数据集示例 */
-        .examples {
-            margin: 3rem 0;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .video-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .video-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .video-placeholder {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(45deg, #d4a574, #e8ddc7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-        }
-
-        .video-info {
-            padding: 1rem;
-        }
-
-        .video-title {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 0.9rem;
-            text-align: center;
         }
 
         /* 动作列表 */
@@ -405,6 +495,28 @@
             
             .contributions {
                 grid-template-columns: 1fr;
+            }
+
+            .video-pair {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .video-wrapper video {
+                height: 200px;
+            }
+
+            .example-item {
+                padding: 1.5rem;
+            }
+
+            .action-name {
+                font-size: 1.6rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
     </style>
@@ -480,54 +592,121 @@
         </section>
 
         <section id="dataset" class="section">
-            <h2>Example</h2>
-            <div class="example-grid">
+            <h2>Dataset Examples</h2>
+            <p class="section-intro">The ANUBIS dataset captures diverse human actions from 80 viewpoints, including complex multi-person interactions and aggressive behaviors. Each sample includes RGB video and corresponding 3D skeletal data for comprehensive action analysis.</p>
+            
+            <div class="examples-container">
                 <div class="example-item">
-                    <div class="video-container">
-                        <video controls poster="videos/thumbnails/punch_to_face.jpg">
-                            <source src="videos/punch_to_face.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="example-header">
+                        <h3 class="action-name">Punch to Face</h3>
+                        <div class="action-meta">
+                            <span class="viewpoint-info">80 viewpoints • 32 joints • 2 subjects</span>
+                        </div>
                     </div>
-                    <div class="skeleton-container">
-                        <video controls poster="videos/skeletons/punch_to_face_skeleton.jpg">
-                            <source src="videos/skeletons/punch_to_face_skeleton.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="video-pair">
+                        <div class="video-column">
+                            <div class="video-label">RGB Video</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/thumbnails/punch_to_face.jpg">
+                                    <source src="videos/punch_to_face.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="video-column">
+                            <div class="video-label">3D Skeleton Visualization</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/skeletons/punch_to_face_skeleton.jpg">
+                                    <source src="videos/skeletons/punch_to_face_skeleton.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="example-title">punch to face</h3>
                 </div>
-                
+
                 <div class="example-item">
-                    <div class="video-container">
-                        <video controls poster="videos/thumbnails/bow.jpg">
-                            <source src="videos/bow.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="example-header">
+                        <h3 class="action-name">Bow</h3>
+                        <div class="action-meta">
+                            <span class="viewpoint-info">80 viewpoints • 32 joints • 2 subjects</span>
+                        </div>
                     </div>
-                    <div class="skeleton-container">
-                        <video controls poster="videos/skeletons/bow_skeleton.jpg">
-                            <source src="videos/skeletons/bow_skeleton.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="video-pair">
+                        <div class="video-column">
+                            <div class="video-label">RGB Video</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/thumbnails/bow.jpg">
+                                    <source src="videos/bow.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="video-column">
+                            <div class="video-label">3D Skeleton Visualization</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/skeletons/bow_skeleton.jpg">
+                                    <source src="videos/skeletons/bow_skeleton.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="example-title">bow</h3>
                 </div>
-                
+
                 <div class="example-item">
-                    <div class="video-container">
-                        <video controls poster="videos/thumbnails/cheers_and_drinks.jpg">
-                            <source src="videos/cheers_and_drinks.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="example-header">
+                        <h3 class="action-name">Cheers and Drinks</h3>
+                        <div class="action-meta">
+                            <span class="viewpoint-info">80 viewpoints • 32 joints • 2 subjects</span>
+                        </div>
                     </div>
-                    <div class="skeleton-container">
-                        <video controls poster="videos/skeletons/cheers_and_drinks_skeleton.jpg">
-                            <source src="videos/skeletons/cheers_and_drinks_skeleton.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="video-pair">
+                        <div class="video-column">
+                            <div class="video-label">RGB Video</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/thumbnails/cheers_and_drinks.jpg">
+                                    <source src="videos/cheers_and_drinks.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="video-column">
+                            <div class="video-label">3D Skeleton Visualization</div>
+                            <div class="video-wrapper">
+                                <video controls poster="videos/skeletons/cheers_and_drinks_skeleton.jpg">
+                                    <source src="videos/skeletons/cheers_and_drinks_skeleton.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="example-title">cheers and drinks</h3>
+                </div>
+            </div>
+
+            <div class="dataset-features">
+                <h3>Dataset Features</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">📹</div>
+                        <h4>Multi-view Capture</h4>
+                        <p>80 synchronized viewpoints including systematic rear-view coverage</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🦴</div>
+                        <h4>3D Skeleton Data</h4>
+                        <p>32-joint skeletal representation with precise temporal alignment</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👥</div>
+                        <h4>Complex Interactions</h4>
+                        <p>Both single-person actions and multi-person social/aggressive behaviors</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <h4>High Quality</h4>
+                        <p>Professional recording environment with consistent lighting and setup</p>
+                    </div>
                 </div>
             </div>
 
