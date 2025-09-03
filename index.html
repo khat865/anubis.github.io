@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Representation-Centric Survey of Skeletal Action Recognition and the ANUBIS Benchmark</title>
+    <title>ANUBIS - Representation-Centric Survey of Skeletal Action Recognition</title>
     <style>
         * {
             margin: 0;
@@ -15,8 +15,27 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SF Pro Display', sans-serif;
             line-height: 1.6;
             color: #333;
-            /* 原本是 #f8f9fa，这里改为更有层次的浅色渐变背景 */
-            background: linear-gradient(180deg, #f7f9fc 0%, #eef2f7 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f1f3f4 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        /* 为页面添加微妙的纹理背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(212, 165, 116, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(212, 165, 116, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+            background-size: 600px 600px, 800px 800px, 400px 400px;
+            background-position: 0 0, 200px 200px, 100px 100px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* 导航栏 */
@@ -192,11 +211,13 @@
 
         /* 统计数据 */
         .stats {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 3rem 2rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .stats-grid {
@@ -234,17 +255,20 @@
         }
 
         .contribution-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
             border-top: 4px solid #d4a574;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .contribution-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.98);
         }
 
         .contribution-card h3 {
@@ -259,7 +283,7 @@
             line-height: 1.6;
         }
 
-        /* 数据集示例区域 - 简化版本 */
+        /* 数据集示例区域 */
         .section-intro {
             font-size: 1.1rem;
             color: #7f8c8d;
@@ -278,17 +302,19 @@
         }
 
         .example-item {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
             border-radius: 16px;
             padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .example-item:hover {
             transform: translateY(-4px);
             box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.98);
         }
 
         .example-header {
@@ -357,80 +383,239 @@
             display: block;
         }
 
-        /* 数据集特性部分 */
-        .dataset-features {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        /* 重新设计的Dataset Features部分 */
+        .dataset-overview {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 3rem;
-            margin-top: 4rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .dataset-features h3 {
+        .dataset-overview h3 {
             font-size: 2rem;
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             font-weight: 700;
         }
 
-        .features-grid {
+        .overview-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
 
-        .feature-item {
-            text-align: center;
-            padding: 1.5rem;
+        .overview-text {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
+        .overview-text p {
+            margin-bottom: 1.5rem;
         }
 
-        .feature-item h4 {
-            font-size: 1.2rem;
-            color: #2c3e50;
-            margin-bottom: 0.8rem;
+        .key-features {
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid #d4a574;
+        }
+
+        .key-features h4 {
+            color: #d4a574;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
         }
 
-        .feature-item p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .feature-list {
+            list-style: none;
+            padding: 0;
         }
 
-        /* 作者区域 */
-        .authors {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 3rem 2rem;
-            margin: 3rem 0;
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #d4a574;
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Results部分 */
+        .results-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+        }
+
+        .results-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #d4a574;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* 重新设计的Action Categories部分 */
+        .action-categories-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .categories-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .categories-text {
+            padding-right: 2rem;
+        }
+
+        .categories-text h3 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .categories-text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .category-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .category-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+        }
+
+        .category-stat .number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #d4a574;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-stat .label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #d4a574;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* 重新设计的Authors部分 */
+        .authors-section {
+            background: rgba(248, 249, 250, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 4rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         .authors-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
         .author-card {
-            background: white;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
             padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 1rem;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .author-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .author-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(212, 165, 116, 0.2);
+            flex-shrink: 0;
+        }
+
+        .author-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .author-info {
+            flex: 1;
         }
 
         .author-info h4 {
             color: #2c3e50;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.3rem;
         }
@@ -438,84 +623,97 @@
         .author-info p {
             color: #7f8c8d;
             font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        /* 动作列表 */
-        .action-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+        /* Citation部分 */
+        .citation-section {
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            margin: 4rem 0 2rem 0;
+            border: 1px solid rgba(212, 165, 116, 0.2);
         }
 
-        .category-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .category-card h4 {
-            color: #d4a574;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .category-count {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        .category-desc {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-
-        /* --- 新增：Citation 样式（不影响其它部分） --- */
-        .citation-card {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            position: relative;
+        .citation-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .citation-title {
             font-size: 2rem;
             color: #2c3e50;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             font-weight: 700;
         }
 
         .citation-box {
-            background: #f4f6f8;
-            border: 1px solid rgba(0,0,0,0.08);
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 84px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            white-space: pre-wrap;
-            word-break: break-word;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 1rem;
         }
 
-        .copy-btn {
+        .citation-text {
+            margin: 0;
+            white-space: pre-line;
+            word-wrap: break-word;
+        }
+
+        .copy-button {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1rem;
+            right: 1rem;
             background: #d4a574;
-            color: #fff;
+            color: white;
             border: none;
-            border-radius: 8px;
-            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
-        .copy-btn:hover { background: #c19654; }
+        .copy-button:hover {
+            background: #c19654;
+            transform: translateY(-1px);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+        }
+
+        .copy-feedback {
+            position: absolute;
+            top: -2rem;
+            right: 0;
+            background: #27ae60;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .copy-feedback.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* 响应式设计 */
         @media (max-width: 768px) {
@@ -558,9 +756,22 @@
                 font-size: 1.6rem;
             }
 
-            .features-grid {
+            .overview-content {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
+            }
+
+            .categories-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .category-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .authors-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -671,35 +882,6 @@
 
                 <div class="example-item">
                     <div class="example-header">
-                        <h3 class="action-name">Bow</h3>
-                        <div class="action-meta">
-                            <span class="viewpoint-info">80 viewpoints • 32 joints • 2 subjects</span>
-                        </div>
-                    </div>
-                    <div class="video-pair">
-                        <div class="video-column">
-                            <div class="video-label">RGB Video</div>
-                            <div class="video-wrapper">
-                                <video controls poster="videos/thumbnails/bow.jpg">
-                                    <source src="videos/bow.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
-                        <div class="video-column">
-                            <div class="video-label">3D Skeleton Visualization</div>
-                            <div class="video-wrapper">
-                                <video controls poster="videos/skeletons/bow_skeleton.jpg">
-                                    <source src="videos/skeletons/bow_skeleton.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="example-item">
-                    <div class="example-header">
                         <h3 class="action-name">Cheers and Drinks</h3>
                         <div class="action-meta">
                             <span class="viewpoint-info">80 viewpoints • 32 joints • 2 subjects</span>
@@ -728,129 +910,174 @@
                 </div>
             </div>
 
-            <div class="dataset-features">
-                <h3>Dataset Features</h3>
-                <div class="features-grid">
-                    <div class="feature-item">
-                        <div class="feature-icon">📹</div>
-                        <h4>Multi-view Capture</h4>
-                        <p>80 synchronized viewpoints including systematic rear-view coverage</p>
+            <!-- 重新设计的Dataset Features -->
+            <div class="dataset-overview">
+                <h3>Dataset Overview</h3>
+                <div class="overview-content">
+                    <div class="overview-text">
+                        <p>The ANUBIS dataset represents a significant advancement in skeletal action recognition benchmarking. Designed with a representation-centric approach, it addresses key limitations in existing datasets by providing comprehensive multi-viewpoint coverage and diverse action categories.</p>
+                        <p>Our dataset captures 102 distinct action classes performed by 80 subjects across 80 synchronized viewpoints, resulting in over 66,000 video clips. The systematic inclusion of rear-view perspectives fills a critical gap in current benchmarks, enabling more robust evaluation of action recognition models.</p>
+                        <p>Each action sequence is meticulously annotated with 32-joint 3D skeletal data, providing researchers with high-quality ground truth for developing and evaluating representation learning methods in skeletal action recognition.</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🦴</div>
-                        <h4>3D Skeleton Data</h4>
-                        <p>32-joint skeletal representation with precise temporal alignment</p>
+                    <div class="key-features">
+                        <h4>Key Features</h4>
+                        <ul class="feature-list">
+                            <li>80 synchronized viewpoints with systematic rear-view coverage</li>
+                            <li>32-joint 3D skeletal representation with precise temporal alignment</li>
+                            <li>102 action classes spanning social, aggressive, and independent behaviors</li>
+                            <li>Professional recording environment with consistent lighting</li>
+                            <li>Multi-person interaction scenarios with complex dynamics</li>
+                            <li>Comprehensive evaluation protocols for representation learning</li>
+                        </ul>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">👥</div>
-                        <h4>Complex Interactions</h4>
-                        <p>Both single-person actions and multi-person social/aggressive behaviors</p>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <h4>High Quality</h4>
-                        <p>Professional recording environment with consistent lighting and setup</p>
-                    </div>
-                </div>
-            </div>
-
-            <h2>Action Categories</h2>
-            <div class="action-categories">
-                <div class="category-card">
-                    <h4>Independent Actions</h4>
-                    <div class="category-count">45</div>
-                    <p class="category-desc">Single-person behaviors and individual actions</p>
-                </div>
-                <div class="category-card">
-                    <h4>Multi-person Interactions</h4>
-                    <div class="category-count">57</div>
-                    <p class="category-desc">Complex interactions between multiple people</p>
-                </div>
-                <div class="category-card">
-                    <h4>Social Interactions</h4>
-                    <div class="category-count">15</div>
-                    <p class="category-desc">Handshaking, patting shoulders, object exchange</p>
-                </div>
-                <div class="category-card">
-                    <h4>Aggressive Actions</h4>
-                    <div class="category-count">40</div>
-                    <p class="category-desc">Hitting, stabbing, strangling and other aggressive behaviors</p>
                 </div>
             </div>
         </section>
 
-        
+        <!-- Results Section (moved between dataset and authors) -->
         <section id="results" class="section">
             <h2>Results</h2>
-            <div class="results-img">
-                <p style="color:#999;">[Results Figure Placeholder]</p>
+            <div class="results-section">
+                <div class="results-placeholder">
+                    Results Figure Placeholder - Add your performance comparison chart here
+                </div>
             </div>
         </section>
+
+        <!-- Action Categories Section (redesigned with left text + right chart) -->
+        <section class="section">
+            <h2>Action Categories</h2>
+            <div class="action-categories-section">
+                <div class="categories-content">
+                    <div class="categories-text">
+                        <h3>Comprehensive Action Taxonomy</h3>
+                        <p>The ANUBIS dataset features a carefully designed taxonomy that captures the full spectrum of human actions. Our categorization system distinguishes between independent single-person behaviors and complex multi-person interactions, with special attention to both social and aggressive behaviors.</p>
+                        <p>This diverse collection enables comprehensive evaluation of action recognition models across different complexity levels and interaction types, making ANUBIS a valuable benchmark for advancing the field.</p>
+                        <div class="category-stats">
+                            <div class="category-stat">
+                                <span class="number">45</span>
+                                <span class="label">Independent Actions</span>
+                            </div>
+                            <div class="category-stat">
+                                <span class="number">57</span>
+                                <span class="label">Multi-person Interactions</span>
+                            </div>
+                            <div class="category-stat">
+                                <span class="number">15</span>
+                                <span class="label">Social Behaviors</span>
+                            </div>
+                            <div class="category-stat">
+                                <span class="number">40</span>
+                                <span class="label">Aggressive Actions</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-placeholder">
+                        Pie Chart Placeholder - Add your action distribution chart here
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authors Section (redesigned with icons) -->
         <section id="authors" class="section">
             <h2>Authors</h2>
-            <div class="authors">
+            <div class="authors-section">
                 <div class="authors-grid">
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/anu.png" alt="ANU">
+                        </div>
                         <div class="author-info">
                             <h4>Yang Liu</h4>
                             <p>Australian National University</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/uab.png" alt="UAB">
+                        </div>
                         <div class="author-info">
                             <h4>Jiyao Yang</h4>
                             <p>University of Alabama at Birmingham</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/csiro.png" alt="CSIRO">
+                        </div>
                         <div class="author-info">
                             <h4>Madhawa Perera</h4>
                             <p>Data61 CSIRO</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/oppo.png" alt="OPPO">
+                        </div>
                         <div class="author-info">
                             <h4>Pan Ji</h4>
                             <p>OPPO US Research Center</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/postech.png" alt="POSTECH">
+                        </div>
                         <div class="author-info">
                             <h4>Dongwoo Kim</h4>
                             <p>POSTECH</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/cmu.png" alt="CMU">
+                        </div>
                         <div class="author-info">
                             <h4>Min Xu</h4>
                             <p>Carnegie Mellon University</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/uab.png" alt="UAB">
+                        </div>
                         <div class="author-info">
                             <h4>Tianyang Wang</h4>
                             <p>University of Alabama at Birmingham</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/uwa.png" alt="UWA">
+                        </div>
                         <div class="author-info">
                             <h4>Saeed Anwar</h4>
                             <p>University of Western Australia</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/curtin.png" alt="Curtin">
+                        </div>
                         <div class="author-info">
                             <h4>Tom Gedeon</h4>
                             <p>Curtin University</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/griffith.png" alt="Griffith">
+                        </div>
                         <div class="author-info">
                             <h4>Lei Wang</h4>
                             <p>Griffith University and Data61/CSIRO</p>
                         </div>
                     </div>
                     <div class="author-card">
+                        <div class="author-icon">
+                            <img src="images/institutions/anu.png" alt="ANU">
+                        </div>
                         <div class="author-info">
                             <h4>Zhenyue Qin</h4>
                             <p>Australian National University</p>
@@ -859,9 +1086,9 @@
                 </div>
             </div>
         </section>
-    
 
-        <section id="results" class="section">
+        <!-- Access Resources Section -->
+        <section class="section">
             <h2>Access Resources</h2>
             <div style="text-align: center; margin-top: 2rem;">
                 <div class="hero-buttons">
@@ -873,17 +1100,67 @@
             </div>
         </section>
 
-        <!-- 新增：最底部 Citation 区块（默认空内容，可一键复制） -->
+        <!-- Citation Section -->
         <section id="citation" class="section">
-            <div class="citation-card">
-                <h2 class="citation-title">Citation</h2>
-                <button class="copy-btn" onclick="copyCitation()">Copy</button>
-                <pre class="citation-box" id="citationText"></pre>
+            <div class="citation-section">
+                <div class="citation-container">
+                    <h2 class="citation-title">Citation</h2>
+                    <div class="citation-box">
+                        <pre class="citation-text">@article{anubis2024,
+  title={Representation-Centric Survey of Skeletal Action Recognition and the ANUBIS Benchmark},
+  author={Liu, Yang and Yang, Jiyao and Perera, Madhawa and Ji, Pan and Kim, Dongwoo and Xu, Min and Wang, Tianyang and Anwar, Saeed and Gedeon, Tom and Wang, Lei and Qin, Zhenyue},
+  journal={arXiv preprint},
+  year={2024}
+}</pre>
+                        <button class="copy-button" onclick="copyCitation()">
+                            📋 Copy
+                        </button>
+                        <div class="copy-feedback" id="copyFeedback">Copied!</div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
     <script>
+        // 复制Citation功能
+        function copyCitation() {
+            const citationText = document.querySelector('.citation-text').textContent;
+            const copyButton = document.querySelector('.copy-button');
+            const feedback = document.getElementById('copyFeedback');
+            
+            navigator.clipboard.writeText(citationText).then(() => {
+                // 显示复制成功反馈
+                feedback.classList.add('show');
+                copyButton.innerHTML = '✅ Copied!';
+                
+                // 2秒后恢复原状
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    copyButton.innerHTML = '📋 Copy';
+                }, 2000);
+            }).catch(() => {
+                // 备用复制方法
+                const textArea = document.createElement('textarea');
+                textArea.value = citationText;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    feedback.classList.add('show');
+                    copyButton.innerHTML = '✅ Copied!';
+                    setTimeout(() => {
+                        feedback.classList.remove('show');
+                        copyButton.innerHTML = '📋 Copy';
+                    }, 2000);
+                } catch (err) {
+                    console.error('复制失败', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -939,14 +1216,7 @@
                 observer.observe(statsSection);
             }
         });
-
-        // 新增：Citation 一键复制
-        function copyCitation() {
-            const text = document.getElementById('citationText').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('Citation copied to clipboard!');
-            });
-        }
     </script>
 </body>
 </html>
+
