@@ -143,8 +143,8 @@ nav {
 .hero h1::before {
     content: "";
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
     background-image: url('../images/anubis.png');
     background-size: contain;
     background-repeat: no-repeat;
