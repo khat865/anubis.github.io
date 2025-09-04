@@ -1,6 +1,260 @@
 <section id="results" class="section">
-    <h2>Results</h2>
+    <h2>Benchmark Results</h2>
     <div class="results-section">
-        <img src="images/result.png" alt="ANUBIS Key Contributions Overview" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);">
+        <!-- Performance Summary Cards -->
+        <div class="performance-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+            <div class="summary-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 16px; text-align: center;">
+                <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">Best NTU60 X-View</div>
+                <div style="font-size: 2rem; font-weight: 700;">97.8%</div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">Skateformer</div>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 1.5rem; border-radius: 16px; text-align: center;">
+                <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">Best NTU120 X-Sub</div>
+                <div style="font-size: 2rem; font-weight: 700;">91.0%</div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">DeGCN</div>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 1.5rem; border-radius: 16px; text-align: center;">
+                <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">Best ANUBIS Top-1</div>
+                <div style="font-size: 2rem; font-weight: 700;">60.33%</div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">LA-GCN</div>
+            </div>
+            <div class="summary-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: white; padding: 1.5rem; border-radius: 16px; text-align: center;">
+                <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 0.5rem;">Best ANUBIS Top-5</div>
+                <div style="font-size: 2rem; font-weight: 700;">86.87%</div>
+                <div style="font-size: 0.8rem; opacity: 0.8;">LA-GCN</div>
+            </div>
+        </div>
+
+        <!-- Main Results Table -->
+        <div class="table-container" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3);">
+            <div class="table-header" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 1.5rem; text-align: center;">
+                <h3 style="margin: 0; font-size: 1.3rem; font-weight: 600;">Comprehensive Method Comparison</h3>
+                <p style="margin: 0.5rem 0 0 0; opacity: 0.9; font-size: 0.9rem;">Performance across NTU60, NTU120, and ANUBIS datasets</p>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table class="modern-results-table" style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background: #f8f9fa; border-bottom: 2px solid #e9ecef;">
+                            <th rowspan="2" style="padding: 1rem 0.8rem; text-align: left; font-weight: 700; color: #2c3e50; border-right: 1px solid #e9ecef; min-width: 120px;">Method</th>
+                            <th rowspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef;">Venue</th>
+                            <th rowspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef; min-width: 100px;">Input Features</th>
+                            <th colspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef; background: rgba(103, 58, 183, 0.1);">NTU RGB+D 60</th>
+                            <th colspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef; background: rgba(156, 39, 176, 0.1);">NTU RGB+D 120</th>
+                            <th colspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef; background: rgba(233, 30, 99, 0.1);">ANUBIS</th>
+                            <th rowspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50; border-right: 1px solid #e9ecef;">Params (M)</th>
+                            <th rowspan="2" style="padding: 1rem 0.8rem; text-align: center; font-weight: 600; color: #2c3e50;">GFLOPs</th>
+                        </tr>
+                        <tr style="background: #f1f3f4; border-bottom: 1px solid #e9ecef; font-size: 0.75rem;">
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">X-Sub</th>
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">X-View</th>
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">X-Sub</th>
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">X-Set</th>
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">Top-1</th>
+                            <th style="padding: 0.5rem 0.8rem; text-align: center; color: #666; border-right: 1px solid #e9ecef;">Top-5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Joint-based Methods -->
+                        <tr class="category-header" style="background: linear-gradient(135deg, rgba(63, 81, 181, 0.15) 0%, rgba(63, 81, 181, 0.05) 100%); font-weight: 600;">
+                            <td colspan="11" style="padding: 0.8rem 1rem; color: #3f51b5; font-size: 0.9rem; border-bottom: 1px solid #e0e7ff;">
+                                Joint-based Methods
+                            </td>
+                        </tr>
+                        <tr class="data-row" style="border-bottom: 1px solid #f1f3f4;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">STGCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">AAAI'18</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(63, 81, 181, 0.1); color: #3f51b5; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">Joint</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">81.5</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">88.3</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb;">-</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb; border-right: 2px solid #e9ecef;">-</td>
+                            <td style="padding: 0.8rem; text-align: center;">50.25</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">79.96</td>
+                            <td style="padding: 0.8rem; text-align: center;">3.4</td>
+                            <td style="padding: 0.8rem; text-align: center;">45.23</td>
+                        </tr>
+                        <tr class="data-row" style="background: rgba(248, 249, 250, 0.5); border-bottom: 1px solid #f1f3f4;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">Motif-STGCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">AAAI'19</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(63, 81, 181, 0.1); color: #3f51b5; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">Joint</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">84.2</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">90.2</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb;">-</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb; border-right: 2px solid #e9ecef;">-</td>
+                            <td style="padding: 0.8rem; text-align: center;">55.76</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">83.96</td>
+                            <td style="padding: 0.8rem; text-align: center;">1.78</td>
+                            <td style="padding: 0.8rem; text-align: center;">27.10</td>
+                        </tr>
+
+                        <!-- Joint+Bone Methods -->
+                        <tr class="category-header" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.15) 0%, rgba(255, 152, 0, 0.05) 100%); font-weight: 600;">
+                            <td colspan="11" style="padding: 0.8rem 1rem; color: #ff9800; font-size: 0.9rem; border-bottom: 1px solid #fff3e0;">
+                                Joint+Bone Enhancement Methods
+                            </td>
+                        </tr>
+                        <tr class="data-row" style="border-bottom: 1px solid #f1f3f4;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">2s-AGCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">CVPR'19</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(255, 152, 0, 0.1); color: #ff9800; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">88.5</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">95.1</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb;">-</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #bbb; border-right: 2px solid #e9ecef;">-</td>
+                            <td style="padding: 0.8rem; text-align: center;">57.26</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">84.86</td>
+                            <td style="padding: 0.8rem; text-align: center;">3.47</td>
+                            <td style="padding: 0.8rem; text-align: center;">47.84</td>
+                        </tr>
+                        <tr class="data-row" style="background: rgba(248, 249, 250, 0.5); border-bottom: 1px solid #f1f3f4;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">HD-GCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">ICCV'23</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(255, 152, 0, 0.1); color: #ff9800; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B</span></td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.1); font-weight: 700; color: #4caf50;">93.4</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.1); font-weight: 700; color: #4caf50; border-right: 2px solid #e9ecef;">97.2</td>
+                            <td style="padding: 0.8rem; text-align: center;">90.1</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">91.6</td>
+                            <td style="padding: 0.8rem; text-align: center;">51.33</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">80.96</td>
+                            <td style="padding: 0.8rem; text-align: center;">8.8</td>
+                            <td style="padding: 0.8rem; text-align: center;">12.74</td>
+                        </tr>
+
+                        <!-- Multi-modal Methods -->
+                        <tr class="category-header" style="background: linear-gradient(135deg, rgba(244, 67, 54, 0.15) 0%, rgba(244, 67, 54, 0.05) 100%); font-weight: 600;">
+                            <td colspan="11" style="padding: 0.8rem 1rem; color: #f44336; font-size: 0.9rem; border-bottom: 1px solid #ffebee;">
+                                Multi-modal Enhancement Methods (Joint+Bone+Motion)
+                            </td>
+                        </tr>
+                        <tr class="data-row" style="border-bottom: 1px solid #f1f3f4;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">InfoGCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">CVPR'22</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(244, 67, 54, 0.1); color: #f44336; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B+M</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">93.0</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">97.1</td>
+                            <td style="padding: 0.8rem; text-align: center;">89.4</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">90.7</td>
+                            <td style="padding: 0.8rem; text-align: center;">46.99</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">76.69</td>
+                            <td style="padding: 0.8rem; text-align: center;">1.6</td>
+                            <td style="padding: 0.8rem; text-align: center;">19.97</td>
+                        </tr>
+                        <tr class="data-row highlight-row" style="background: rgba(244, 67, 54, 0.05); border-bottom: 1px solid #f1f3f4; border-left: 4px solid #f44336;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">Skateformer</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">ECCV'24</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(244, 67, 54, 0.1); color: #f44336; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B+M</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">93.5</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(244, 67, 54, 0.2); font-weight: 700; color: #d32f2f; border-right: 2px solid #e9ecef;">97.8 ★</td>
+                            <td style="padding: 0.8rem; text-align: center;">89.8</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">91.4</td>
+                            <td style="padding: 0.8rem; text-align: center;">45.02</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">75.43</td>
+                            <td style="padding: 0.8rem; text-align: center;">3.8</td>
+                            <td style="padding: 0.8rem; text-align: center;">8.93</td>
+                        </tr>
+                        <tr class="data-row highlight-row" style="background: rgba(76, 175, 80, 0.05); border-bottom: 1px solid #f1f3f4; border-left: 4px solid #4caf50;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">DeGCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">TIP'24</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(244, 67, 54, 0.1); color: #f44336; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B+M</span></td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.2); font-weight: 700; color: #388e3c;">93.6 ★</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">97.4</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.2); font-weight: 700; color: #388e3c;">91.0 ★</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.2); font-weight: 700; color: #388e3c; border-right: 2px solid #e9ecef;">92.1 ★</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(76, 175, 80, 0.2); font-weight: 700; color: #388e3c;">60.16 ★</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">85.63</td>
+                            <td style="padding: 0.8rem; text-align: center;">1.4</td>
+                            <td style="padding: 0.8rem; text-align: center;">9.75</td>
+                        </tr>
+                        <tr class="data-row highlight-row" style="background: rgba(156, 39, 176, 0.05); border-bottom: 1px solid #f1f3f4; border-left: 4px solid #9c27b0;">
+                            <td style="padding: 0.8rem; font-weight: 600; color: #2c3e50;">LA-GCN</td>
+                            <td style="padding: 0.8rem; text-align: center; color: #666; font-size: 0.8rem;">TNMM'25</td>
+                            <td style="padding: 0.8rem; text-align: center;"><span style="background: rgba(244, 67, 54, 0.1); color: #f44336; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">J+B+M</span></td>
+                            <td style="padding: 0.8rem; text-align: center;">93.5</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">97.2</td>
+                            <td style="padding: 0.8rem; text-align: center;">90.7</td>
+                            <td style="padding: 0.8rem; text-align: center; border-right: 2px solid #e9ecef;">91.8</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(156, 39, 176, 0.2); font-weight: 700; color: #7b1fa2;">60.33 ★</td>
+                            <td style="padding: 0.8rem; text-align: center; background: rgba(156, 39, 176, 0.2); font-weight: 700; color: #7b1fa2; border-right: 2px solid #e9ecef;">86.87 ★</td>
+                            <td style="padding: 0.8rem; text-align: center;">3.4</td>
+                            <td style="padding: 0.8rem; text-align: center;">28.32</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="table-legend" style="margin-top: 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; font-size: 0.85rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(63, 81, 181, 0.1); border-radius: 20px;">
+                <div style="width: 12px; height: 12px; background: #3f51b5; border-radius: 50%;"></div>
+                <span>Joint Methods</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 152, 0, 0.1); border-radius: 20px;">
+                <div style="width: 12px; height: 12px; background: #ff9800; border-radius: 50%;"></div>
+                <span>Joint+Bone Methods</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(244, 67, 54, 0.1); border-radius: 20px;">
+                <div style="width: 12px; height: 12px; background: #f44336; border-radius: 50%;"></div>
+                <span>Multi-modal Methods</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(76, 175, 80, 0.1); border-radius: 20px;">
+                <div style="width: 12px; height: 12px; background: #4caf50; border-radius: 50%;"></div>
+                <span>★ Best Performance</span>
+            </div>
+        </div>
     </div>
 </section>
+
+<style>
+.modern-results-table {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.data-row:hover {
+    background: rgba(212, 165, 116, 0.1) !important;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+.highlight-row {
+    position: relative;
+}
+
+.table-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.table-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .performance-summary {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    
+    .modern-results-table {
+        font-size: 0.75rem;
+    }
+    
+    .modern-results-table th,
+    .modern-results-table td {
+        padding: 0.5rem 0.4rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .performance-summary {
+        grid-template-columns: 1fr !important;
+    }
+}
+</style>
