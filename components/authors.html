@@ -1,28 +1,179 @@
-<section id="authors" class="section">
-    <h2>Authors</h2>
-    <div class="authors-section">
-        <div class="authors-list" style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 1rem;">
-            <span>Yang Liu (Australian National University)</span>
-            <span>•</span>
-            <span>Jiyao Yang (University of Alabama at Birmingham)</span>
-            <span>•</span>
-            <span>Madhawa Perera (Data61 CSIRO)</span>
-            <span>•</span>
-            <span>Pan Ji (OPPO US Research Center)</span>
-            <span>•</span>
-            <span>Dongwoo Kim (POSTECH)</span>
-            <span>•</span>
-            <span>Min Xu (Carnegie Mellon University)</span>
-            <span>•</span>
-            <span>Tianyang Wang (University of Alabama at Birmingham)</span>
-            <span>•</span>
-            <span>Saeed Anwar (University of Western Australia)</span>
-            <span>•</span>
-            <span>Tom Gedeon (Curtin University)</span>
-            <span>•</span>
-            <span>Lei Wang (Griffith University and Data61/CSIRO)</span>
-            <span>•</span>
-            <span>Zhenyue Qin (Australian National University)</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: #f5f5f5;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .authors-section {
+            text-align: center;
+        }
+
+        .authors-names {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .author-name {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .author-name.first-author {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .author-name.corresponding {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .author-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .affiliations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .affiliation-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .separator {
+            color: #999;
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <section id="authors" class="section">
+        <h2>Authors</h2>
+        <div class="authors-section">
+            <div class="authors-list" style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 1rem;">
+                <span style="display: flex; align-items: center; gap: 0.3rem; color: #2563eb; font-weight: 600;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Yang Liu*1 (Australian National University)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem; color: #2563eb; font-weight: 600;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Jiyao Yang*1 (University of Alabama at Birmingham)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Madhawa Perera2 (Data61 CSIRO)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Pan Ji3 (OPPO US Research Center)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Dongwoo Kim4 (POSTECH)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Min Xu5 (Carnegie Mellon University)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Tianyang Wang1 (University of Alabama at Birmingham)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Saeed Anwar6 (University of Western Australia)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Tom Gedeon7 (Curtin University)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem; color: #dc2626; font-weight: 600;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Lei Wang†8 (Griffith University and Data61/CSIRO)
+                </span>
+                <span>•</span>
+                <span style="display: flex; align-items: center; gap: 0.3rem; color: #dc2626; font-weight: 600;">
+                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                    </svg>
+                    Zhenyue Qin†1 (Australian National University)
+                </span>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.85rem; color: #666; text-align: center;">
+                *Equal contribution &nbsp;&nbsp;&nbsp;&nbsp; †Corresponding authors
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</body>
+</html>
