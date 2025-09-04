@@ -39,12 +39,14 @@
             margin-top: 1rem;
             justify-content: center;
             margin-bottom: 1.5rem;
+            align-items: center;
         }
 
         .author-name {
             display: flex;
             align-items: center;
             gap: 0.3rem;
+            white-space: nowrap;
         }
 
         .author-name.first-author {
@@ -60,7 +62,8 @@
         .author-icon {
             width: 16px;
             height: 16px;
-            fill: currentColor;
+            border-radius: 50%;
+            object-fit: cover;
             flex-shrink: 0;
         }
 
@@ -72,10 +75,16 @@
             font-size: 0.9rem;
             color: #666;
             margin-bottom: 1rem;
+            align-items: center;
         }
 
         sup {
             font-size: 0.75em;
+        }
+
+        .separator {
+            color: #999;
+            margin: 0 0.2rem;
         }
     </style>
 </head>
@@ -85,100 +94,78 @@
         <div class="authors-section">
             <div class="authors-list">
                 <span class="author-name first-author">
-                    <svg str="images/anu.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/anu.jpg" alt="ANU" />
                     Yang Liu*<sup>1</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name first-author">
-                    <svg str="images/alabama.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/alabama.jpg" alt="UAB" />
                     Jiyao Yang*<sup>2</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg str="images/csiro.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/csiro.jpg" alt="CSIRO" />
                     Madhawa Perera<sup>3</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg str="images/OPPO US Research Center.png" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/OPPO US Research Center.png" alt="OPPO" />
                     Pan Ji<sup>4</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg class="images/postech.png" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/postech.png" alt="POSTECH" />
                     Dongwoo Kim<sup>5</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg class="images/caneiji.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/caneiji.jpg" alt="CMU" />
                     Min Xu<sup>6</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg class="images/alabama.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/alabama.jpg" alt="UAB" />
                     Tianyang Wang<sup>2</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg class="images/west.png" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/west.png" alt="UWA" />
                     Saeed Anwar<sup>7</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name">
-                    <svg class="images/curtin.png" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/curtin.png" alt="Curtin" />
                     Tom Gedeon<sup>8</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name corresponding">
-                    <svg class="images/Griffith.png" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/Griffith.png" alt="Griffith" />
                     Lei Wang†<sup>3,9</sup>
                 </span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span class="author-name corresponding">
-                    <svg class="images/anu.jpg" viewBox="0 0 24 24">
-                        <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
-                    </svg>
+                    <img class="author-icon" src="images/anu.jpg" alt="ANU" />
                     Zhenyue Qin†<sup>1</sup>
                 </span>
             </div>
             
             <div class="affiliations-list">
                 <span><sup>1</sup>Australian National University</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>2</sup>University of Alabama at Birmingham</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>3</sup>Data61 CSIRO</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>4</sup>OPPO US Research Center</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>5</sup>POSTECH</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>6</sup>Carnegie Mellon University</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>7</sup>University of Western Australia</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>8</sup>Curtin University</span>
-                <span>•</span>
+                <span class="separator">•</span>
                 <span><sup>9</sup>Griffith University</span>
             </div>
 
