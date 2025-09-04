@@ -191,7 +191,7 @@ nav {
 /* Common Section Styles - 修复宽度和间距问题 */
 .section {
     padding: 3rem; /* 增加内边距 */
-    max-width: 1600px; /* 增加最大宽度到1600px */
+    max-width: 1400px; /* 增加最大宽度到1600px */
     margin: 2rem auto; /* 恢复上下间距 */
     width: 100%;
 }
