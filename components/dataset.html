@@ -152,17 +152,64 @@
     </div>
 
     <style>
+        .examples-container {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .example-item {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+        }
+
         .video-triple {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 1rem;
+            gap: 1.5rem; /* 增加gap */
+            width: 100%;
         }
         
         .video-wrapper video {
             width: 100%;
-            height: 200px;
+            height: 220px; /* 增加视频高度 */
             object-fit: cover;
             display: block;
+        }
+
+        .section-intro {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 1200px; /* 增加intro宽度 */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .key-features {
+            background: rgba(212, 165, 116, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid #d4a574;
+            width: 100%;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 增加最小宽度 */
+            gap: 1rem;
+            width: 100%;
         }
         
         .action-name {
