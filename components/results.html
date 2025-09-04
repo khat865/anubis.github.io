@@ -66,7 +66,7 @@
                     </thead>
                     <tbody>
                         <!-- Joint-based Methods -->
-                        <tr class="category-header"><td colspan="11"></td></tr>
+                        <tr class="category-header"><td colspan="11"></span></td></tr>
                         <tr>
                             <td>STGCN</td>
                             <td>AAAI'18</td>
@@ -95,7 +95,7 @@
                         </tr>
 
                         <!-- Joint+Bone Methods -->
-                        <tr class="category-header"><td colspan="11"></td></tr>
+                        <tr class="category-header"><td colspan="11"></span></td></tr>
                         <tr>
                             <td>2s-AGCN</td>
                             <td>CVPR'19</td>
@@ -150,7 +150,7 @@
                         </tr>
 
                         <!-- Joint+Motion Methods -->
-                        <tr class="category-header"><td colspan="11"></td></tr>
+                        <tr class="category-header"><td colspan="11"></span></td></tr>
                         <tr>
                             <td>RA-GCN</td>
                             <td>ICIP'19</td>
@@ -166,7 +166,7 @@
                         </tr>
 
                         <!-- Multi-modal Methods -->
-                        <tr class="category-header"><td colspan="11"></td></tr>
+                        <tr class="category-header"><td colspan="11"></span></td></tr>
                         <tr>
                             <td>Shift-GCN</td>
                             <td>ICIP'19</td>
@@ -333,21 +333,25 @@
 
 <!-- LA-GCN Confusion Matrix Section -->
 <div style="margin-top: 4rem;">
-    <h3 style="text-align: center; font-size: 1.8rem; color: #2c3e50; margin-bottom: 2rem; font-weight: 600;">LA-GCN Performance Analysis</h3>
-    <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3); padding: 2rem; text-align: center;">
-        <h4 style="margin: 0 0 1.5rem 0; color: #34495e; font-size: 1.3rem;">ANUBIS Dataset Confusion Matrix</h4>
-        <div style="background: #f8f9fa; border-radius: 12px; padding: 2rem; border: 2px dashed #d4a574; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #7f8c8d; font-size: 1.1rem; font-weight: 500;">
-            <div style="text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: 1rem; color: #d4a574;">📊</div>
-                <div>LA-GCN Confusion Matrix Placeholder</div>
-                <div style="font-size: 0.9rem; margin-top: 0.5rem; color: #999;">Insert your confusion matrix image here</div>
-            </div>
+    <div class="table-container" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.3);">
+        <div class="table-header" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; padding: 1.5rem; text-align: center;">
+            <h4 style="margin: 0; font-size: 1.3rem; font-weight: 600;">ANUBIS Dataset Confusion Matrix</h4>
+            <p style="margin: 0.5rem 0 0 0; opacity: 0.9; font-size: 0.9rem;">LA-GCN detailed classification performance analysis</p>
         </div>
-        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6; text-align: left;">
-            The confusion matrix above shows the detailed classification performance of LA-GCN on the ANUBIS dataset. 
-            This visualization provides insights into which action classes are most challenging and where the model tends to make classification errors, 
-            helping to understand the remaining challenges in skeletal action recognition.
-        </p>
+        <div style="padding: 2rem;">
+            <div style="background: #f8f9fa; border-radius: 12px; padding: 2rem; border: 2px dashed #d4a574; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #7f8c8d; font-size: 1.1rem; font-weight: 500;">
+                <div style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; color: #d4a574;">📊</div>
+                    <div>LA-GCN Confusion Matrix Placeholder</div>
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; color: #999;">Insert your confusion matrix image here</div>
+                </div>
+            </div>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #666; line-height: 1.6; text-align: left;">
+                The confusion matrix above shows the detailed classification performance of LA-GCN on the ANUBIS dataset. 
+                This visualization provides insights into which action classes are most challenging and where the model tends to make classification errors, 
+                helping to understand the remaining challenges in skeletal action recognition.
+            </p>
+        </div>
     </div>
 </div>
 
