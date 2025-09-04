@@ -65,8 +65,8 @@ nav {
 
 .logo::before {
     content: "";
-    width: 24px;
-    height: 24px;
+    width: 32px; /* 从24px增加到32px */
+    height: 32px; /* 从24px增加到32px */
     background-image: url('../images/anubis.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -128,6 +128,7 @@ nav {
     width: 100%;
 }
 
+/* 在标题上方添加大型图标 */
 .hero h1 {
     font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
@@ -135,6 +136,21 @@ nav {
     color: white;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    position: relative;
+}
+
+/* 为标题添加大图标 */
+.hero h1::before {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 80px;
+    background-image: url('../images/anubis.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto 2rem auto;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
 }
 
 .hero .subtitle {
@@ -738,6 +754,19 @@ nav {
     .hero {
         min-height: 500px;
         padding: 6rem 1.5rem;
+    }
+    
+    /* 移动端调整标题上方图标大小 */
+    .hero h1::before {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* 移动端调整导航logo图标大小 */
+    .logo::before {
+        width: 28px;
+        height: 28px;
     }
     
     .section {
