@@ -32,21 +32,19 @@
             text-align: center;
         }
 
-        .authors-names {
+        .authors-list {
             display: flex;
             flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin-top: 1rem;
             justify-content: center;
-            gap: 1rem 2rem;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
         }
 
         .author-name {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 1rem;
-            color: #333;
+            gap: 0.3rem;
         }
 
         .author-name.first-author {
@@ -66,25 +64,18 @@
             flex-shrink: 0;
         }
 
-        .affiliations {
+        .affiliations-list {
             display: flex;
             flex-wrap: wrap;
+            gap: 0.5rem 1rem;
             justify-content: center;
-            gap: 1rem 2rem;
             font-size: 0.9rem;
             color: #666;
-            line-height: 1.5;
+            margin-bottom: 1rem;
         }
 
-        .affiliation-item {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .separator {
-            color: #999;
-            margin: 0 0.5rem;
+        sup {
+            font-size: 0.75em;
         }
     </style>
 </head>
@@ -92,84 +83,105 @@
     <section id="authors" class="section">
         <h2>Authors</h2>
         <div class="authors-section">
-            <div class="authors-list" style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 1rem;">
-                <span style="display: flex; align-items: center; gap: 0.3rem; color: #2563eb; font-weight: 600;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+            <div class="authors-list">
+                <span class="author-name first-author">
+                    <svg str="images/anu.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Yang Liu*1 (Australian National University)
+                    Yang Liu*<sup>1</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem; color: #2563eb; font-weight: 600;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name first-author">
+                    <svg str="images/alabama.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Jiyao Yang*1 (University of Alabama at Birmingham)
+                    Jiyao Yang*<sup>2</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg str="images/csiro.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Madhawa Perera2 (Data61 CSIRO)
+                    Madhawa Perera<sup>3</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg str="images/OPPO US Research Center.png" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Pan Ji3 (OPPO US Research Center)
+                    Pan Ji<sup>4</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg class="images/postech.png" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Dongwoo Kim4 (POSTECH)
+                    Dongwoo Kim<sup>5</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg class="images/caneiji.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Min Xu5 (Carnegie Mellon University)
+                    Min Xu<sup>6</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg class="images/alabama.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Tianyang Wang1 (University of Alabama at Birmingham)
+                    Tianyang Wang<sup>2</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg class="images/west.png" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Saeed Anwar6 (University of Western Australia)
+                    Saeed Anwar<sup>7</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name">
+                    <svg class="images/curtin.png" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Tom Gedeon7 (Curtin University)
+                    Tom Gedeon<sup>8</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem; color: #dc2626; font-weight: 600;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name corresponding">
+                    <svg class="images/Griffith.png" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Lei Wang†8 (Griffith University and Data61/CSIRO)
+                    Lei Wang†<sup>3,9</sup>
                 </span>
                 <span>•</span>
-                <span style="display: flex; align-items: center; gap: 0.3rem; color: #dc2626; font-weight: 600;">
-                    <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 24 24">
+                <span class="author-name corresponding">
+                    <svg class="images/anu.jpg" viewBox="0 0 24 24">
                         <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
                     </svg>
-                    Zhenyue Qin†1 (Australian National University)
+                    Zhenyue Qin†<sup>1</sup>
                 </span>
             </div>
+            
+            <div class="affiliations-list">
+                <span><sup>1</sup>Australian National University</span>
+                <span>•</span>
+                <span><sup>2</sup>University of Alabama at Birmingham</span>
+                <span>•</span>
+                <span><sup>3</sup>Data61 CSIRO</span>
+                <span>•</span>
+                <span><sup>4</sup>OPPO US Research Center</span>
+                <span>•</span>
+                <span><sup>5</sup>POSTECH</span>
+                <span>•</span>
+                <span><sup>6</sup>Carnegie Mellon University</span>
+                <span>•</span>
+                <span><sup>7</sup>University of Western Australia</span>
+                <span>•</span>
+                <span><sup>8</sup>Curtin University</span>
+                <span>•</span>
+                <span><sup>9</sup>Griffith University</span>
+            </div>
+
             <div style="margin-top: 1rem; font-size: 0.85rem; color: #666; text-align: center;">
                 *Equal contribution &nbsp;&nbsp;&nbsp;&nbsp; †Corresponding authors
             </div>
